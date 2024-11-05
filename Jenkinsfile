@@ -5,8 +5,12 @@ pipeline {
     stages {
         stage ('Build') {
             steps {
-                echo "Welcome to Jenkins Pipeline"
-                error "I will print error message"
+                retry (3) {
+                    echo "Welcome to Jenkins Pipeline"
+                    error "I will print error message"
+                }
+                echo "Message: After 3 times"
+
             }
         }
     }
