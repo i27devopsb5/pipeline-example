@@ -3,14 +3,10 @@ pipeline {
         label 'java-slave'
     }
     stages {
-        stage ('Build') {
+        stage {
             steps {
-                retry (3) {
-                    echo "Welcome to Jenkins Pipeline"
-                    error "I will print error message"
-                }
-                echo "Message: After 3 times"
-
+                echo "Sleeping for 60 seconds"
+                sleep 60
             }
         }
     }
