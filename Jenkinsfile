@@ -9,6 +9,7 @@ pipeline {
                 echo "hello world"
                 sh 'date'
                 echo "executing my first stage"
+                sh 'sleep 10'
             }
         }
         stage('scriptblock') {
@@ -22,6 +23,7 @@ pipeline {
                       // ${variable} , ${env.variable}, ${pipelineparams}
                     else 
                       println("Do learn ${course}")
+                    sleep 20 // sh 'sleep 5'
                 }
             }
         }
