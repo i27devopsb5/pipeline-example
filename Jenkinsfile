@@ -11,6 +11,7 @@ pipeline {
         }
         stage ('Sonar') {
             steps {
+                sh 'sdfsdfsdfsda'
                 echo "Executing Sonar Block"
             }
         }
@@ -19,7 +20,7 @@ pipeline {
         //         label 'docker-slave'
         //     }
         //     steps {
-        //         sh 'docker pull nginx'
+        //         sh 'fdfsddocker pull nginx'
         //     }
         // }
     }
