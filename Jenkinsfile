@@ -3,7 +3,7 @@ pipeline {
         label 'java-slave'
     }
     stages {
-        stage {
+        stage('Build') {
             steps {
                 echo "Sleeping for 60 seconds"
                 sleep 60
