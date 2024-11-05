@@ -2,7 +2,7 @@ pipeline {
     agent {
         label 'java-slave'
     }
-    stage {
+    stages {
         stage ("Hello") {
             steps {
                 // actual steps 
