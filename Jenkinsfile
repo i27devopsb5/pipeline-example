@@ -1,27 +1,28 @@
 pipeline {
     agent {
-        label 'java-slave' // k8s-slave //node-slave
+        label 'java-slave'
     }
-    stages {
-        stage('build') {
+    stage {
+        stage ("Hello") {
             steps {
-                echo "Executing Build Block"
-                sh 'hostname -i'
+                // actual steps 
+                echo "hello world"
+                sh 'date'
+                echo "executing my first stage"
             }
         }
-        stage ('Sonar') {
+        stage('scriptblock') {
             steps {
-                sh 'sdfsdfsdfsda'
-                echo "Executing Sonar Block"
+                script {
+                    // my script 
+                    // define a variable 
+                    def course = "jenkinsPipeline"
+                    if (course == "k8s")
+                      println("Thanks for enrolling in K8S")
+                    else 
+                      println("Do learn K8S")
+                }
             }
         }
-        // stage ('docker') {
-        //     agent {
-        //         label 'docker-slave'
-        //     }
-        //     steps {
-        //         sh 'fdfsddocker pull nginx'
-        //     }
-        // }
     }
 }
