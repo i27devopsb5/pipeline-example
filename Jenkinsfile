@@ -16,11 +16,12 @@ pipeline {
                 script {
                     // my script 
                     // define a variable 
-                    def course = "jenkinsPipeline"
+                    def course = "k8s"
                     if (course == "k8s")
-                      println("Thanks for enrolling in K8S")
+                      println("Thanks for enrolling in ${course}")
+                      // ${variable} , ${env.variable}, ${pipelineparams}
                     else 
-                      println("Do learn K8S")
+                      println("Do learn ${course}")
                 }
             }
         }
