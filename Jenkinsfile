@@ -1,13 +1,22 @@
 pipeline {
-    agent any
-    tools {
-        maven 'Maven_3.8.8' // this name should match to the name creted under tool section
+    agent {
+        label 'java-slave'
     }
+
+    environment { // Super 
+        NAME = "siva"
+        COURSE = "k8s"
+    }
+
     stages {
-        stage('MavenVersion') {
+        stage ('Build') {
+            environment {
+                CLOUD = "GCP"
+            }
             steps {
-                echo "Welcome to Tools demo"
-                sh 'mvn --version'
+                echo "Welcome ${NAME}"
+                echo "You enrolled for ${COURSE} Course"
+                echo "You are certified in ${CLOUD}"
             }
         }
     }
