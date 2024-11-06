@@ -12,6 +12,8 @@ pipeline {
                 sh "docker tag nginx i27devopsb4/nginx:b5"
                 echo "********************* Printing images After changing the tag ******************"
                 sh "docker images"
+                echo "********************** Pushing the Image to Repo ******************"
+                sh "docker push i27devopsb4/nginx:b5"
             }
         }
     }
