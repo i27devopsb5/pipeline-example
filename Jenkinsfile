@@ -2,22 +2,11 @@ pipeline {
     agent {
         label 'java-slave'
     }
-
-    environment { // Super 
-        NAME = "siva"
-        COURSE = "k8s"
-    }
-
     stages {
-        stage ('FirstStage') {
-            environment {
-                CLOUD = "GCP"
-                NAME = "Meghana"
-            }
+        stage('DockerBP'){
             steps {
-                echo "Welcome ${NAME}"
-                echo "You enrolled for ${COURSE} Course"
-                echo "You are certified in ${CLOUD}"
+                //nginx pull, change the name to myownname and push to my registry 
+                docker pull nginx
             }
         }
     }
