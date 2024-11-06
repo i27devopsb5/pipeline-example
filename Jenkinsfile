@@ -2,6 +2,9 @@ pipeline {
     agent {
         label 'java-slave'
     }
+    environment {
+        DOCKER_CREDS = credentials('i27devopsb4_dockerhub_creds') // username and passowrd
+    }
     stages {
         stage('DockerBP'){
             steps {
@@ -12,6 +15,8 @@ pipeline {
                 sh "docker tag nginx i27devopsb4/nginx:b5"
                 echo "********************* Printing images After changing the tag ******************"
                 sh "docker images"
+                echo "********************* Docker Login *********************"
+                sh "docker login -u ${DOCKER_CREDS_USR} -p ${DOCKER_CREDS_PSW}"
                 echo "********************** Pushing the Image to Repo ******************"
                 sh "docker push i27devopsb4/nginx:b5"
             }
