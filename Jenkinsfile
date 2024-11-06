@@ -2,13 +2,30 @@ pipeline {
     agent {
         label 'java-slave'
     }
-    environment {
-        DOCKER_CREDS = credentials('i27devopsb4_dockerhub_creds') // username and passowrd
-    }
     stages {
-        stage('DockerBP'){
+        stage ('Build') {
             steps {
-                echo "Depoying from main branch"
+                echo "Building the application"
+            }
+        }
+        stage ('Sonar') {
+            steps {
+                echo "Executing Sonar Scans"
+            }
+        }
+        stage ('DockerBuildNPush') {
+            steps {
+                echo "Building and pushing docker images"
+            }
+        }
+        stage ('Devenv') {
+            steps {
+                echo "Deploying our application to dev"
+            }
+        }
+        stage ('Testenv') {
+            steps {
+                echo "Deploying our application to test"
             }
         }
     }
