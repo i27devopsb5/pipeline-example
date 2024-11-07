@@ -3,7 +3,7 @@ pipeline {
         label 'java-slave'
     }
     environment {
-        DEPLOY_TO = 'production'
+        DEPLOY_TO = 'somename'
     }
     stages {
         stage ('Build') {
@@ -29,11 +29,22 @@ pipeline {
         stage('Deploy to Stage Env') {
             when {
                 expression {
-                    BRANCH_NAME == /(production|staging)/
+                    BRANCH_NAME == /(production|staging|main)/
                 }
             }
             steps {
                 echo 'Deploying to Stage..'
+            }
+        }
+        stage('Deploy to Prod') {
+            when {
+                allOf {
+                    branch 'prodbranch'
+                    environment name: 'DEPLOY_TO', value: 'production'
+                }
+            }
+            steps {
+                echo 'Deploying to Prod..'
             }
         }
     }
