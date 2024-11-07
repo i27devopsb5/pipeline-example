@@ -1,23 +1,28 @@
 pipeline {
     agent {
-        label 'java-slave'
+        label 'java-slave'  
     }
+    parameters{
+        choice(name: 'deployToProd',
+               choices: 'no\nyes',
+               description: 'Deploy to Production?'
+            )   
 
-    parameters {
-        string (name: 'PERSON', defaultValue: 'Siva', description: 'Enter Your Name') 
-        choice (name: 'COURSE', choices: ['k8s', 'jenkins', 'docker'], description: 'Select the Course')
-        booleanParam (name: 'CLOUD', defaultValue: true, description: 'Do you want to be certified in GCP?')
-    }
-    environment {
-        CI_SERVER = 'Jenkins'
     }
     stages {
-        stage ('FirstStage') {
+        stage('Build') {
             steps {
-                echo "Welcome ${params.PERSON}"
-                echo "You enrolled for ${params.COURSE} Course"
-                echo "You are certified in ${params.CLOUD}"
-                echo "You are using ${CI_SERVER}"
+                echo 'Building the application'
+            }
+        }
+        stage ('deploytoProd') {
+            when {
+                expression {
+                    params.deployToProd == 'yes'
+                }
+            }
+            steps {
+                echo 'Deploying to Production'
             }
         }
     }
