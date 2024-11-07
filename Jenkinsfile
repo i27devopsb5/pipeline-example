@@ -3,7 +3,7 @@ pipeline {
         label 'java-slave'
     }
     environment {
-        DEPLOY_TO = 'production'
+        DEPLOY_TO = 'xyz'
     }
     stages {
         stage('Build') {
@@ -16,4 +16,3 @@ pipeline {
         }
     }
 }
-
